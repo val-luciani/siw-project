@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Opera</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+    <body>
+        <form action="#" th:action="@{/opera}" th:object="${opera}" method="post">
+            <div>
+                <div>
+                    <span th:text="#{label.title}">Titolo: </span>
+                    <span><input type="text" th:field="*{titolo}" /></span>
+                    <span th:if="${#fields.hasErrors('titolo')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div>
+                    <span th:text="#{label.year}">Anno: </span>
+                    <span><input type="text" th:field="*{anno}" /></span>
+                    <span th:if="${#fields.hasErrors('anno')}" th:text="#{label.number}">Error</span>
+                </div>
+                <div>
+                    <span th:text="#{label.technique}">Tecnica: </span>
+                    <span><input type="text" th:field="*{tecnica}" /></span>
+                    <span th:if="${#fields.hasErrors('tecnica')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div>
+                    <span th:text="#{label.size}">Dimensioni: </span>
+                    <span><input type="text" th:field="*{dimensioni}" /></span>
+                    <span th:if="${#fields.hasErrors('dimensioni')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <!-- 
+                <div>
+                    <span th:text="#{label.author}">Autore: </span>
+                    <span><input type="text" th:field="*{autore}" /></span>
+                    <span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
+                </div> -->
+                <span th:text="#{label.author}">Autore: </span>
+                <select th:field="*{autore}">
+				  <option th:each="autore : ${allAuthors}" 
+				          th:value="${autore}" 
+				          th:text="#{${'opera.autore.' + autore}}">Autore</option>
+				</select>
+                <div>
+                    <span><button type="submit">Submit</button></span>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
