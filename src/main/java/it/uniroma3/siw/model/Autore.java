@@ -174,8 +174,7 @@ public class Autore {
 
 	@Override
 	public String toString() {
-		return "Autore [nome=" + nome + ", cognome=" + cognome + ", nazionalita=" + nazionalita + ", dataDiNascita="
-				+ dataDiNascita + ", dataDiMorte=" + dataDiMorte + ", opere=" + opere + "]";
+		return  nome + " " + cognome;
 	}
 	
 	

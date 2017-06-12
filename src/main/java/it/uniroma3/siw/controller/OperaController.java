@@ -29,13 +29,13 @@ public class OperaController {
 		return this.autoreService.findAll();
 	}
 	
-	//mapping dalla index alla form
+	//mapping alla form
 	@GetMapping("/opera")
 	public String showForm(Opera opera) {
 		return "addOpera";
 	}
 	
-	//controlla i valori della form e se è tutto ok restituisce "results"
+	//controlla i valori della form e se è tutto ok restituisce "showOpera"
 	@PostMapping("/opera")
     public String checkOperaInfo(@Valid @ModelAttribute Opera opera, 
     									BindingResult bindingResult, Model model) {

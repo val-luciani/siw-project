@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Opere</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	   <div>
+                <h1>Opere</h1>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Titolo</th>
+                        <th>Anno</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="opera : ${allOpere}">
+                        <td th:text="${opera.titolo}"></td>
+                        <td th:text="${opera.anno}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            
+        </div>
+        
+        
+        <br />
+        <div>
+            <div>
+                <a href="/opera">Click here to add another opera</a>
+            </div>
+        </div>
+    
+</body>
+</html>

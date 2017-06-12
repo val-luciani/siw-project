@@ -27,17 +27,11 @@
                     <span><input type="text" th:field="*{dimensioni}" /></span>
                     <span th:if="${#fields.hasErrors('dimensioni')}" th:text="#{label.mandatory}">Error</span>
                 </div>
-                <!-- 
-                <div>
-                    <span th:text="#{label.author}">Autore: </span>
-                    <span><input type="text" th:field="*{autore}" /></span>
-                    <span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
-                </div> -->
                 <span th:text="#{label.author}">Autore: </span>
                 <select th:field="*{autore}">
 				  <option th:each="autore : ${allAuthors}" 
-				          th:value="${autore}" 
-				          th:text="#{${autore}}">Autore</option>
+				          th:value="${autore.id}" 
+				          th:text="${autore}">Autore</option>
 				</select>
                 <div>
                     <span><button type="submit">Submit</button></span>

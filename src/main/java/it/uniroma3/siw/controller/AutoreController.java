@@ -19,13 +19,13 @@ public class AutoreController {
 	@Autowired
 	private AutoreService autoreService;
 	
-	//mapping dalla index alla form
+	//mapping index alla form per aggiungere un autore
 	@GetMapping("/autore")
 	public String showForm(Autore autore) {
 		return "addAutore";
 	}
 	
-	//controlla i valori della form e se è tutto ok restituisce "results"
+	//controlla i valori della form e se è tutto ok restituisce "showAutore"
 	@PostMapping("/autore")
     public String checkOperaInfo(@Valid @ModelAttribute Autore autore, 
     									BindingResult bindingResult, Model model) {
