@@ -37,7 +37,7 @@
                 <select th:field="*{autore}">
 				  <option th:each="autore : ${allAuthors}" 
 				          th:value="${autore}" 
-				          th:text="#{${'opera.autore.' + autore}}">Autore</option>
+				          th:text="#{${autore}}">Autore</option>
 				</select>
                 <div>
                     <span><button type="submit">Submit</button></span>

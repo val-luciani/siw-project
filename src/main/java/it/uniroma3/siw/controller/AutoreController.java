@@ -11,42 +11,32 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Autore;
-import it.uniroma3.siw.model.Opera;
-import it.uniroma3.siw.service.OperaService;
 import it.uniroma3.siw.service.AutoreService;
 
 @Controller
-public class OperaController {
-	
-	@Autowired
-	private OperaService operaService;
+public class AutoreController {
 	
 	@Autowired
 	private AutoreService autoreService;
 	
-	@ModelAttribute("allAuthors")
-	public Iterable<Autore> populateAuthors() {
-		return this.autoreService.findAll();
-	}
-	
 	//mapping dalla index alla form
-	@GetMapping("/opera")
-	public String showForm(Opera opera) {
-		return "addOpera";
+	@GetMapping("/autore")
+	public String showForm(Autore autore) {
+		return "addAutore";
 	}
 	
 	//controlla i valori della form e se è tutto ok restituisce "results"
-	@PostMapping("/opera")
-    public String checkOperaInfo(@Valid @ModelAttribute Opera opera, 
+	@PostMapping("/autore")
+    public String checkOperaInfo(@Valid @ModelAttribute Autore autore, 
     									BindingResult bindingResult, Model model) {
     	
         if (bindingResult.hasErrors()) {
-            return "addOpera";
+            return "addAutore";
         }
         else {
-        	model.addAttribute(opera);
-            operaService.add(opera);
+        	model.addAttribute(autore);
+            autoreService.add(autore);
         }
-        return "showOpera";
+        return "showAutore";
     }
 }

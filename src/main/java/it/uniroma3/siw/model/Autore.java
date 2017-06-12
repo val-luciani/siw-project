@@ -34,12 +34,12 @@ public class Autore {
 	@Column
 	private String nazionalita;
 	
-	@NotNull
+	//@NotNull
 	@Column
 	@Temporal(value=TemporalType.DATE)
 	private Date dataDiNascita;
 	
-	@NotNull
+	//@NotNull
 	@Column
 	@Temporal(value=TemporalType.DATE)
 	private Date dataDiMorte;
