@@ -20,8 +20,8 @@ public class GalleriaController {
 	}
 	
 	//mapping alla galleria
-		@GetMapping("/galleria")
-		public String showGalleria() {
-			return "opere";
-		}
+	@GetMapping("/galleria")
+	public String showGalleria() {
+		return "opere";
+	}
 }

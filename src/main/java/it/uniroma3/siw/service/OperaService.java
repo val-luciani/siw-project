@@ -25,4 +25,9 @@ public class OperaService {
 	public Opera findById(Long id){
 		return this.operaRepository.findOne(id);
 	}
+	
+	@Transactional
+	public void delete(final Opera opera){
+		this.operaRepository.delete(opera);
+	}
 }

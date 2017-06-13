@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:security="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <title>Opere</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,6 +14,10 @@
                     <tr>
                         <th>Titolo</th>
                         <th>Anno</th>
+                        <th>Tecnica</th>
+                        <th>Dimensioni</th>
+                        <th>Autore</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
@@ -20,18 +25,31 @@
                     <tr th:each="opera : ${allOpere}">
                         <td th:text="${opera.titolo}"></td>
                         <td th:text="${opera.anno}"></td>
+                        <td th:text="${opera.tecnica}"></td>
+                        <td th:text="${opera.dimensioni}"></td>
+                        <td><a href="/showAutore.html" th:text="${opera.autore}"></a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        	<security:authorize access="hasRole('ADMIN')">
+                        	<p><a href="/deleteOpera">Elimina</a></p>
+                        	</security:authorize>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
+                
+                <br />
+		        <div>
+		            <div>
+		                <a href="/index.html">Home</a>
+		            </div>
+		        </div>
             
-        </div>
-        
-        
-        <br />
-        <div>
-            <div>
-                <a href="/opera">Click here to add another opera</a>
-            </div>
         </div>
     
 </body>

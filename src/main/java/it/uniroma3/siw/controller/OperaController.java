@@ -49,4 +49,15 @@ public class OperaController {
         }
         return "showOpera";
     }
+	
+	@GetMapping("/deleteOpera")
+	public String showGalleria() {
+		return "opere";
+	}
+	
+	@PostMapping("/deleteOpera")
+	public String deleteOpera(@Valid @ModelAttribute Opera opera) {
+		operaService.delete(opera);
+		return "opere";
+	}
 }
