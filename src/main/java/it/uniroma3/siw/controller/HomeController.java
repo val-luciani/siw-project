@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // controller to access the login page
 @Controller
 public class HomeController {
+	
+  @GetMapping("/")
+	public String index() {
+    return "index";
+  }
 
-  // Login form
+  
   @RequestMapping("/index.html")
   public String admin() {
     return "index";

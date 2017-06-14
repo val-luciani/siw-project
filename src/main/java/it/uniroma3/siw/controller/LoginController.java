@@ -14,13 +14,13 @@ public class LoginController {
     return "login";
   }
 
-  /*Dovrebbe essere superfluo questo pezzo stando alla SecurityConfig*/
+  /*Dovrebbe essere superfluo questo pezzo stando alla SecurityConfig
   
   // Login form with error
   @RequestMapping("/error.html")
   public String loginError(Model model) {
     model.addAttribute("loginError", true);
     return "login";
-  }
+  } */
 
 }

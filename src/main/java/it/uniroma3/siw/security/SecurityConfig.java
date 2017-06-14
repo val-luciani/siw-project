@@ -22,23 +22,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
           .authorizeRequests()
-          .antMatchers("/login*").permitAll()
-          .antMatchers("/index*").permitAll()
-          .antMatchers("/admin*").hasRole("ADMIN")
-          .antMatchers("/add*").hasRole("ADMIN")
-          .antMatchers("/show*").hasRole("ADMIN")
-          .anyRequest().authenticated()		//tutti gli altri URL necessitano autenticazione
-          .and()
+          	  .antMatchers("/static/**").permitAll()
+	          .antMatchers("/index*").permitAll()
+	          .antMatchers("/admin*").hasRole("ADMIN")
+	          .antMatchers("/add*").hasRole("ADMIN")
+	          .antMatchers("/show*").hasRole("ADMIN")
+	          //.anyRequest().authenticated()		//tutti gli altri URL necessitano autenticazione
+	          .and()
           .formLogin()
-          .loginPage("/login.html")
-          .loginProcessingUrl("/login")
-          .defaultSuccessUrl("/dash.html")
-          .failureUrl("/login.html?error=true")
-          .and()
+	          .loginPage("/login")
+	          .permitAll()
+	          .loginProcessingUrl("/login")
+	          .defaultSuccessUrl("/dash.html")
+	          .and()
           .logout()
-          .invalidateHttpSession(true)
-          .logoutUrl("/logout")
-          .logoutSuccessUrl("/login.html");
+	          .permitAll()
+        	  .and();
     }
     
 
