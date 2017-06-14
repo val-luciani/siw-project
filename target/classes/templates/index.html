@@ -1,26 +1,61 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>    
-    <title>Home</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-	<p><a href="/galleria">See the gallery</a></p>
+
+<head>
+	<link rel="stylesheet" href="css/index_style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+	<title>Home</title>
 	
-	<p><a href="/admin">ADMIN page</a></p>
-    
-    <p><a href="/login">LOGIN page</a></p>
-    
-    <p><a href="/logout">LOGOUT</a></p>
-    
-    <br/><br/>
-		        <span sec:authorize="isAuthenticated()">
-	                
-	                | Logged user: <span sec:authentication="name"></span> |
-	                | Roles: <span sec:authentication="principal.authorities"></span> |
-	                
-            	</span>
-    
-</body>
+</head> 
+<body> 
+
+	<header class="header clearfix">
+      <a href="index.html" class="header__logo">Artist/</a>
+      <a href="" class="header__icon-bar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+      <ul class="header__menu animate">
+        <li class="header__menu__item"><a href="">About Us</a></li>
+        <li class="header__menu__item"><a href="">Contact</a></li>
+        <li class="header__menu__item"><a href="">Event</a></li>
+        <li class="header__menu__item"><a href="/login">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+      </ul>
+    </header>
+
+  <section class="cover clearfix">
+    <div class="cover__filter"></div>
+    <div class="cover__caption">
+      <div class="cover__caption__copy">
+        <h1>Benvenuto in Artist/</h1>
+        <h3>Questa è una piccola galleria d'arte</h3>
+        <a href="/dash" class="button">Entra <i class='fa fa-external-link'></i></a>
+        
+       	
+		
+        
+      </div>
+    </div>
+  </section>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+
+</body> 
 </html>

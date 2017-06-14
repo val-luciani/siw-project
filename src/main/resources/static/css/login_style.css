@@ -1,0 +1,65 @@
+html{
+	height:100%;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+body{
+	height:100%;
+	background-image:url("/img/museo.jpg");
+	background-size:cover;
+	background-position:center;
+	background-repeat:no-repeat;
+	font-family:'Lora', serif;
+}
+#container {
+	width:360px;
+	padding:20px;
+	background-color:rgba(0,0,77,0.3);
+	border-radius:7%;
+	margin:80px auto;
+	text-align:center;
+	overflow:hidden;
+}
+.container_header{
+	background-color:rgba(0,0,50,0.35);
+	width:60%;
+	margin:0 auto;
+	border-radius:7%;
+	font-size:30px;
+	color:white;
+}
+.container_form{
+	padding-top:20px;
+}
+.container_form_field input{
+	width:80%;
+	margin:15px;
+	color:white;
+	font-weight:600;
+	border:none;
+	border-bottom:2px solid #000032;
+	background-color:rgba(0,0,77,0.7);
+	outline:none;
+	box-shadow:none;
+	font-size:16px;
+}
+.container_form_field label{
+	font-size:28px;
+	color:white;
+}
+.container_btn{
+	padding:20px 0px;
+}
+.btn-primary{
+	background-color:rgba(0,0,77,0.7);
+	border:5px solid #00004d;
+	font-size:18px;
+}
+.btn-primary #submitBtn:hover{
+	background-color:rgba(0,0,77,0.8);
+}
+	
+	
+	
+	
