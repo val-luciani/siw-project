@@ -33,7 +33,7 @@
 		 
                 <h1 align="left">Opere</h1>
 
-                <table>
+                <table cellspacing="25">
                     <thead>
                     <tr>
                         <th>Titolo</th>
@@ -41,7 +41,6 @@
                         <th>Tecnica</th>
                         <th>Dimensioni</th>
                         <th>Autore</th>
-                        <th></th>
                         
                     </tr>
                     </thead>
@@ -52,17 +51,18 @@
                         <td th:text="${opera.anno}"></td>
                         <td th:text="${opera.tecnica}"></td>
                         <td th:text="${opera.dimensioni}"></td>
-                        <td><a href="/showAutore.html" th:text="${opera.autore}"></a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td th:text="${opera.autore}" style="background-color:#bbb"></td>
                         <td>
                         	<div sec:authorize="hasRole('ADMIN')">
                         		
                         		<a th:href="@{'deleteOpera/{id}'(id=${opera.id})}" class="button">Elimina</a>
+
+                        	</div>
+                        </td>
+                        <td>
+                        	<div sec:authorize="hasRole('ADMIN')">
+                        		
+                        		<a th:href="@{'updateOpera/{id}'(id=${opera.id})}" class="button">Modifica</a>
 
                         	</div>
                         </td>
@@ -81,7 +81,6 @@
         </div>
     </div>
     
-    <br/><br/>
     <span sec:authorize="isAuthenticated()">
            
            | Logged user: <span sec:authentication="name"></span> |

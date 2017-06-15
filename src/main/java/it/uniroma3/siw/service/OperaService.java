@@ -22,8 +22,13 @@ public class OperaService {
 		this.operaRepository.save(opera);
 	}
 	
-	public Opera findById(Long id){
+	public Opera findById(long id){
 		return this.operaRepository.findOne(id);
+	}
+	
+	@Transactional
+	public void save(Opera opera){
+		this.operaRepository.save(opera);
 	}
 	
 	@Transactional

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma3.siw.model.Autore;
@@ -54,15 +55,39 @@ public class OperaController {
         return "showOpera";
     }
 	
-	@GetMapping("/deleteOpera")
-	public String showGalleria() {
-		return "opere";
-	}
-	
 	@RequestMapping(value = "deleteOpera/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable long id) {
 		operaService.delete(id);
 		return new ModelAndView("redirect:/galleria");
+	}
+	
+	@RequestMapping(value = "/updateOpera", method = RequestMethod.POST)
+	public ModelAndView updateOpera(@RequestParam("opera_id") long id, 
+									@RequestParam("opera_titolo") String titolo,
+									@RequestParam("opera_anno") Integer anno,
+									@RequestParam("opera_tecnica") String tecnica,
+									@RequestParam("opera_dimensioni") String dimensioni,
+									@RequestParam("opera_autore") Autore autore) {
+		
+		Opera opera = operaService.findById(id);
+		opera.setAnno(anno);
+		opera.setAutore(autore);
+		opera.setDimensioni(dimensioni);
+		opera.setTecnica(tecnica);
+		opera.setTitolo(titolo);
+		
+		operaService.save(opera);
+		
+		return new ModelAndView("redirect:/galleria");
+	}
+
+	
+	@RequestMapping(value = "updateOpera/{id}", method = RequestMethod.GET)
+	public String update(@PathVariable long id,
+						Model model) {
+		Opera opera = operaService.findById(id);
+		model.addAttribute("opera", opera);
+		return "editOpera";
 	}
 
 }

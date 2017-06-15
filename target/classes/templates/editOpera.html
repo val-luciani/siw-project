@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Opera</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="css/index_style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    
+</head>
+    <body>
+    
+    	<header class="header clearfix">
+	      <a class="header__logo">Form</a>
+	      <a href="" class="header__icon-bar">
+	        <span></span>
+	        <span></span>
+	        <span></span>
+	      </a>
+	    </header>
+    
+        <form action="#" th:action="@{/updateOpera}" th:object="${opera}" method="post">
+            <div>
+            	<div>
+            		<input type="hidden" id="opera_id" name="opera_id" th:value="${opera.id}"/>
+            	</div>
+                <div>
+                    <span th:text="#{label.title}">Titolo: </span>
+                    <span><input type="text" id="opera_titolo" name="opera_titolo" th:value="${opera.titolo}"/></span>
+                    <span th:if="${#fields.hasErrors('titolo')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div>
+                    <span th:text="#{label.year}">Anno: </span>
+                    <span><input type="text" th:value="${opera.anno}" id="opera_anno" name="opera_anno"/></span>
+                    <span th:if="${#fields.hasErrors('anno')}" th:text="#{label.number}">Error</span>
+                </div>
+                <div>
+                    <span th:text="#{label.technique}">Tecnica: </span>
+                    <span><input type="text" th:value="${opera.tecnica}" id="opera_tecnica" name="opera_tecnica"/></span>
+                    <span th:if="${#fields.hasErrors('tecnica')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div>
+                    <span th:text="#{label.size}">Dimensioni: </span>
+                    <span><input type="text" th:value="${opera.dimensioni}" id="opera_dimensioni" name="opera_dimensioni"/></span>
+                    <span th:if="${#fields.hasErrors('dimensioni')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <span th:text="#{label.author}">Autore: </span>
+                <select id="opera_autore" name="opera_autore">
+				  <option th:each="autore : ${allAuthors}" 
+				          th:value="${autore.id}" 
+				          th:text="${autore}">Autore</option>
+				</select>
+                <div>
+                    <span><button type="submit">Submit</button></span>
+                </div>
+            </div>
+        </form>
+        
+        <br/>
+	    <div>
+	    	<div>
+			    <a href="/admin.html" class="button">ADMIN page</a>
+			</div>
+	    </div>
+	    
+	    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+    </body>
+</html>
