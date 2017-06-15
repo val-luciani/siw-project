@@ -41,6 +41,7 @@
                         <th>Tecnica</th>
                         <th>Dimensioni</th>
                         <th>Autore</th>
+                        <th></th>
                         
                     </tr>
                     </thead>
@@ -60,7 +61,9 @@
                         <td></td>
                         <td>
                         	<div sec:authorize="hasRole('ADMIN')">
-                        		<p><a href="/deleteOpera" class="button">Elimina</a></p>
+                        		
+                        		<a th:href="@{'deleteOpera/{id}'(id=${opera.id})}" class="button">Elimina</a>
+
                         	</div>
                         </td>
                     </tr>

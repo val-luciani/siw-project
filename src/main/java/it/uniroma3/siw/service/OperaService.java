@@ -30,4 +30,9 @@ public class OperaService {
 	public void delete(final Opera opera){
 		this.operaRepository.delete(opera);
 	}
+	
+	@Transactional
+	public void delete(long id){
+		this.operaRepository.delete(id);
+	}
 }

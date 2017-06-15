@@ -8,7 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma3.siw.model.Autore;
 import it.uniroma3.siw.model.Opera;
@@ -55,9 +59,10 @@ public class OperaController {
 		return "opere";
 	}
 	
-	@PostMapping("/deleteOpera")
-	public String deleteOpera(@Valid @ModelAttribute Opera opera) {
-		operaService.delete(opera);
-		return "opere";
+	@RequestMapping(value = "deleteOpera/{id}", method = RequestMethod.GET)
+	public ModelAndView delete(@PathVariable long id) {
+		operaService.delete(id);
+		return new ModelAndView("redirect:/galleria");
 	}
+
 }
