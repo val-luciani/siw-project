@@ -1,25 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Autore Inserito</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="css/index_style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    
+</head>
 <body>
+
+	<header class="header clearfix">
+	      <a class="header__logo">Author</a>
+	      <a href="" class="header__icon-bar">
+	        <span></span>
+	        <span></span>
+	        <span></span>
+	      </a>
+	</header>
+	
+	
 	<div>
     	<p th:text="'Nome: ' + ${autore.nome}" />
     </div>
 	<div>
     	<p th:text="'Cognome: ' + ${autore.cognome}" />
     </div>
+    <div>
+    	<p th:text="'Nazionalità: ' + ${autore.nazionalita}" />
+    </div>
     
     <br />
     <div>
     	<div>
-        	<a href="/autore">Click here to add another Author</a>
+        	<a href="/autore" class="button">Click here to add another Author</a>
         </div>
     </div>
+    
     <br/>
     <div>
     	<div>
-		    <a href="/index.html">Home</a>
+		    <a href="/dash.html" class="button">Dashboard</a>
 		</div>
     </div>
+    
+    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
 
 </body>
 </html>

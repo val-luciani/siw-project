@@ -2,9 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>New Autore</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="css/index_style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    
 </head>
-    <body>
+<body>
+
+		<header class="header clearfix">
+	      <a class="header__logo">Form</a>
+	      <a href="" class="header__icon-bar">
+	        <span></span>
+	        <span></span>
+	        <span></span>
+	      </a>
+	    </header>
+    
         <form action="#" th:action="@{/autore}" th:object="${autore}" method="post">
             <div>
                 <div>
@@ -18,7 +33,7 @@
                     <span th:if="${#fields.hasErrors('cognome')}" th:text="#{label.mandatory}">Error</span>
                 </div>
                 <div>
-                    <span th:text="#{label.nationality}">Nazionalità: </span>
+                    <span th:text="#{label.nationality}">Nazionalita': </span>
                     <span><input type="text" th:field="*{nazionalita}" /></span>
                     <span th:if="${#fields.hasErrors('nazionalita')}" th:text="#{label.mandatory}">Error</span>
                 </div>
@@ -27,5 +42,25 @@
                 </div>
             </div>
         </form>
-    </body>
+        
+        <br/>
+	    <div>
+	    	<div>
+			    <a href="/admin.html" class="button">ADMIN page</a>
+			</div>
+	    </div>
+	    
+	    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+	    
+</body>
 </html>
