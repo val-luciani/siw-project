@@ -98,4 +98,14 @@ public class AutoreController {
 		model.addAttribute("opereByAutore", opere);
 		return "opereByAutore";
 	}
+	
+	@RequestMapping(value = "showAutore/{id}", method = RequestMethod.GET)
+	public String showAutore(@PathVariable long id,
+						Model model) {
+		
+		Autore autore = autoreService.findById(id);
+		
+		model.addAttribute("autore", autore);
+		return "showAutore";
+	}
 }
