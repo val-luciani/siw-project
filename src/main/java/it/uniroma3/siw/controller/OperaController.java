@@ -1,11 +1,15 @@
 package it.uniroma3.siw.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +26,9 @@ import it.uniroma3.siw.service.AutoreService;
 
 @Controller
 public class OperaController {
+	
+	
+	private static final Logger logger = Logger.getLogger(OperaController.class);
 	
 	@Autowired
 	private OperaService operaService;
@@ -49,7 +56,15 @@ public class OperaController {
         }
         return "showOpera";
     }
-	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public String handleConstrainViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
+		logger.info("\n\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+ "\n\nECCEZIONE: "+ ex.getMessage() +"\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+"\n\n\n");
+		return "redirect:/opera";
+	}
 	@RequestMapping(value = "deleteOpera/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable long id) {
 		operaService.delete(id);
