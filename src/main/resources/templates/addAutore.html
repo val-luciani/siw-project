@@ -38,6 +38,16 @@
                     <span th:if="${#fields.hasErrors('nazionalita')}" th:text="#{label.mandatory}">Error</span>
                 </div>
                 <div>
+                    <span>Data di nascita: </span>
+                    <span><input type="date" id="data_nascita" name="data_nascita" /></span>
+                    <span th:if="${#fields.hasErrors('dataDiNascita')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div>
+                    <span>Data di morte: </span>
+                    <span><input type="date" id="data_morte" name="data_morte" /></span>
+                    <span th:if="${#fields.hasErrors('dataDiMorte')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div>
                     <span><button type="submit">Submit</button></span>
                 </div>
             </div>

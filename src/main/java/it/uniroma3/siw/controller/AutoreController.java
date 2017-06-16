@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -45,24 +47,42 @@ public class AutoreController {
 	//controlla i valori della form e se è tutto ok restituisce "showAutore"
 	@PostMapping("/autore")
     public String checkAutoreInfo(@Valid @ModelAttribute Autore autore, 
-    									BindingResult bindingResult, Model model) {
+    									BindingResult bindingResult,
+    									Model model,
+    									@RequestParam("data_nascita") String dataDiNascita,
+    									@RequestParam("data_morte") String dataDiMorte) {
+		
+		Date dataNascita, dataMorte;
+		
+		try {
+			dataNascita = new SimpleDateFormat("yyyy-MM-dd").parse(dataDiNascita);
+			dataMorte = new SimpleDateFormat("yyyy-MM-dd").parse(dataDiMorte);
+		} catch(Exception e) {
+			dataNascita = null;
+			dataMorte = null;
+		}
     	
         if (bindingResult.hasErrors()) {
             return "addAutore";
         }
         else {
+        	autore.setDataDiNascita(dataNascita);
+        	autore.setDataDiMorte(dataMorte);
+        	
         	model.addAttribute(autore);
             autoreService.add(autore);
         }
         return "showAutore";
     }
 	
+	//reindirizza a pagina eliminazione autore
 	@RequestMapping(value = "deleteAutore/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable long id) {
 		autoreService.delete(id);
 		return new ModelAndView("redirect:/autori");
 	}
 	
+	//reindirizza a pagina modifica autore
 	@RequestMapping(value = "updateAutore/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable long id,
 						Model model) {
@@ -71,25 +91,41 @@ public class AutoreController {
 		return "editAutore";
 	}
 	
+	//modifica autore
 	@RequestMapping(value = "/updateAutore", method = RequestMethod.POST)
 	public ModelAndView updateAutore(@RequestParam("autore_id") long id, 
 									@RequestParam("autore_nome") String nome,
 									@RequestParam("autore_cognome") String cognome,
-									@RequestParam("autore_nazionalita") String nazionalita) {
+									@RequestParam("autore_nazionalita") String nazionalita,
+									@RequestParam("data_nascita") String dataDiNascita,
+									@RequestParam("data_morte") String dataDiMorte) {
+		
+		Date dataNascita, dataMorte;
+		
+		try {
+			dataNascita = new SimpleDateFormat("yyyy-MM-dd").parse(dataDiNascita);
+			dataMorte = new SimpleDateFormat("yyyy-MM-dd").parse(dataDiMorte);
+		} catch(Exception e) {
+			dataNascita = null;
+			dataMorte = null;
+		}
 		
 		Autore autore = autoreService.findById(id);
+		
 		autore.setNome(nome);
 		autore.setCognome(cognome);
 		autore.setNazionalita(nazionalita);
+		autore.setDataDiNascita(dataNascita);
+		autore.setDataDiMorte(dataMorte);
 		
 		autoreService.save(autore);
 		
 		return new ModelAndView("redirect:/autori");
 	}
 	
-	//metodo opereAutore
+	//opere by autore
 	@RequestMapping(value = "opereAutore/{id}", method = RequestMethod.GET)
-	public String opere(@PathVariable long id,
+	public String opereByAutore(@PathVariable long id,
 						Model model) {
 		Autore autore = autoreService.findById(id);
 		List<Opera> opere = operaService.findByAutore(autore);
@@ -99,6 +135,7 @@ public class AutoreController {
 		return "opereByAutore";
 	}
 	
+	//dettagli autore
 	@RequestMapping(value = "showAutore/{id}", method = RequestMethod.GET)
 	public String showAutore(@PathVariable long id,
 						Model model) {
