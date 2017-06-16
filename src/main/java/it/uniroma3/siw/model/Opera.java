@@ -18,7 +18,7 @@ public class Opera {
 	private Long id;
 	
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String titolo;
 	
 	@NotNull
@@ -33,6 +33,7 @@ public class Opera {
 	@Column
 	private String dimensioni;
 	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "autore_id")
 	private Autore autore;

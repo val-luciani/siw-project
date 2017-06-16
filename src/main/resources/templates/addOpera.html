@@ -43,11 +43,13 @@
                     <span th:if="${#fields.hasErrors('dimensioni')}" th:text="#{label.mandatory}">Error</span>
                 </div>
                 <span th:text="#{label.author}">Autore: </span>
-                <select th:field="*{autore}">
+                <select th:field="*{autore}" required="required">
 				  <option th:each="autore : ${allAuthors}" 
 				          th:value="${autore.id}" 
 				          th:text="${autore}">Autore</option>
 				</select>
+				<span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
+				<span><a href="/autore"> Aggiungi Autore</a></span>
                 <div>
                     <span><button type="submit">Submit</button></span>
                 </div>
@@ -61,6 +63,7 @@
 			</div>
 	    </div>
 	    
+	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	    <script>
       $(document).ready(function(){
 
@@ -72,5 +75,7 @@
         });
       });
     </script>
+    
+   	<script type="text/javascript" src="js/constraintError.js"></script>
     </body>
 </html>

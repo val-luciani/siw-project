@@ -4,12 +4,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +31,9 @@ import it.uniroma3.siw.service.OperaService;
 
 @Controller
 public class AutoreController {
+	
+	//Logger
+	private static final Logger logger = Logger.getLogger(OperaController.class);
 	
 	@Autowired
 	private AutoreService autoreService;
@@ -144,5 +152,28 @@ public class AutoreController {
 		
 		model.addAttribute("autore", autore);
 		return "showAutore";
+	}
+	
+	
+	/*Gestione eccezione: Archivio Opere Vuoto*/
+	@ExceptionHandler(SQLGrammarException.class)
+	public String handleSQLGrammarException(SQLGrammarException ex, HttpServletRequest request) {
+		logger.info("\n\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+ "\n\nECCEZIONE: La tabella richiesta non è ancoa stata creata\nErrorMsg: "+ ex.getMessage() +"\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+"\n\n\n");
+		return "redirect:/admin?codErr=1";
+	}
+	
+	/*Gestisce eccezione record duplicati*/
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public String handleConstrainViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
+		logger.info("\n\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+ "\n\nECCEZIONE: L'inserzione violerebbe i vincoli del modello\nErrorMsg:"+ ex.getMessage() +"\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+"\n\n\n");
+		return "redirect:/autore?codErr=2";
 	}
 }

@@ -43,6 +43,11 @@
         	<a href="/autore" class="button">Click here to add another Author</a>
         </div>
     </div>
+        <div>
+    	<div sec:authorize="hasRole('ADMIN')">
+        	<a href="/opera" class="button">Add an Opera for this Author</a>
+        </div>
+    </div>
     
     <br/>
     <div>

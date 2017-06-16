@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ import it.uniroma3.siw.service.AutoreService;
 @Controller
 public class OperaController {
 	
-	
+	//Logger
 	private static final Logger logger = Logger.getLogger(OperaController.class);
 	
 	@Autowired
@@ -36,14 +37,20 @@ public class OperaController {
 	@Autowired
 	private AutoreService autoreService;
 	
-	//mapping alla form
-	@GetMapping("/opera")
-	public String showForm(Opera opera) {
+	
+	@ModelAttribute("allAuthors")
+	public Iterable<Autore> populateAuthors() {
+ 		return this.autoreService.findAll();
+ 	}
+	
+	/*Inserisci nuova opera*/
+	@RequestMapping(value = "/opera", method = RequestMethod.GET)
+	public String showForm(Opera opera, HttpServletRequest request) {
 		return "addOpera";
 	}
-	
+
 	//controlla i valori della form e se è tutto ok restituisce "showOpera"
-	@PostMapping("/opera")
+	@RequestMapping( value = "/opera", method = RequestMethod.POST)
     public String checkOperaInfo(@Valid @ModelAttribute Opera opera, 
     									BindingResult bindingResult, Model model) {
     	
@@ -56,21 +63,37 @@ public class OperaController {
         }
         return "showOpera";
     }
+	
+	/*Gestisce eccezione record duplicati*/
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public String handleConstrainViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
 		logger.info("\n\n\n"
 				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-				+ "\n\nECCEZIONE: "+ ex.getMessage() +"\n\n"
+				+ "\n\nECCEZIONE: L'inserzione violerebbe i vincoli del modello\nErrorMsg:"+ ex.getMessage() +"\n\n"
 				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 				+"\n\n\n");
-		return "redirect:/opera";
+		return "redirect:/opera?codErr=2";
 	}
+	
+	/*Gestione eccezione: Archivio Opere Vuoto*/
+	@ExceptionHandler(SQLGrammarException.class)
+	public String handleSQLGrammarException(SQLGrammarException ex, HttpServletRequest request) {
+		logger.info("\n\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+ "\n\nECCEZIONE: La tabella richiesta non è ancoa stata creata\nErrorMsg: "+ ex.getMessage() +"\n\n"
+				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				+"\n\n\n");
+		return "redirect:/admin?codErr=1";
+	}
+	
+	/*Rimuovi opera con un certo ID*/
 	@RequestMapping(value = "deleteOpera/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable long id) {
 		operaService.delete(id);
 		return new ModelAndView("redirect:/galleria");
 	}
 	
+	/*Aggiorna dati opera*/
 	@RequestMapping(value = "/updateOpera", method = RequestMethod.POST)
 	public ModelAndView updateOpera(@RequestParam("opera_id") long id, 
 									@RequestParam("opera_titolo") String titolo,
@@ -91,7 +114,7 @@ public class OperaController {
 		return new ModelAndView("redirect:/galleria");
 	}
 
-	
+	/*Aggiorna dati opera avente ID*/
 	@RequestMapping(value = "updateOpera/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable long id,
 						Model model) {
