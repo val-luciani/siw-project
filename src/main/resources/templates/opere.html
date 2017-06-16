@@ -53,6 +53,13 @@
                         <td th:text="${opera.dimensioni}"></td>
                         <td th:text="${opera.autore}" style="background-color:#bbb"></td>
                         <td>
+                        	<div>
+                        		
+                        		<a th:href="@{'showAutore/{id}'(id=${opera.autore.id})}" class="button">Dettagli</a>
+
+                        	</div>
+                        </td>
+                        <td>
                         	<div sec:authorize="hasRole('ADMIN')">
                         		
                         		<a th:href="@{'deleteOpera/{id}'(id=${opera.id})}" class="button">Elimina</a>

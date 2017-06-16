@@ -24,6 +24,12 @@ public class GalleriaController {
 		return this.operaService.findAll();
 	}
 	
+	/*
+	@ModelAttribute("autore")
+	public Autore populateAutore(Long id){
+		return this.autoreService.findById(id);
+	} */
+	
 	@ModelAttribute("allAuthors")
 	public Iterable<Autore> populateAuthors() {
 		return this.autoreService.findAll();
