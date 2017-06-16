@@ -1,9 +1,12 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.model.Autore;
 import it.uniroma3.siw.model.Opera;
 import it.uniroma3.siw.repository.OperaRepository;
 
@@ -26,6 +29,10 @@ public class OperaService {
 		return this.operaRepository.findOne(id);
 	}
 	
+	public List<Opera> findByAutore(Autore autore){
+		return this.operaRepository.findByAutore(autore);
+	}
+	
 	@Transactional
 	public void save(Opera opera){
 		this.operaRepository.save(opera);
@@ -40,4 +47,6 @@ public class OperaService {
 	public void delete(long id){
 		this.operaRepository.delete(id);
 	}
+	
+	
 }

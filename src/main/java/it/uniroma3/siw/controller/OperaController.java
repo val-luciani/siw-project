@@ -29,11 +29,6 @@ public class OperaController {
 	@Autowired
 	private AutoreService autoreService;
 	
-	@ModelAttribute("allAuthors")
-	public Iterable<Autore> populateAuthors() {
-		return this.autoreService.findAll();
-	}
-	
 	//mapping alla form
 	@GetMapping("/opera")
 	public String showForm(Opera opera) {
