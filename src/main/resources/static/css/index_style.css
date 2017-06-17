@@ -39,7 +39,7 @@ COVER
 --------------------------*/
 
 .cover {
-	height: 75%;
+	height: 100%;
   background-image: url("https://source.unsplash.com/category/buildings");
   background-size: cover;
   -o-background-size: cover;
@@ -73,25 +73,7 @@ COVER
   text-align: center;
 }
 
-/*-------------------------
-TABLET: regole di style eseguite solo su schermi larghi al massimo 998px
---------------------------*/
-@media (max-width: 998px;) {
 
-}
-/*-------------------------
-SMARTPHONE
---------------------------*/
-@media (max-width: 767px;) {
-  .header{position: fixed;z-index: 100;width: 100%;}
-  .header_icon-bar{display: block;}
-  .header_menu{width: 100%;height: 0px;overflow: hidden;}
-  .header_menu_item{display: block;}
-  .is-open{height: 300px;overflow: auto;}
-
-  /*  Cover   */
-  .cover{height: 100%;}
-}
 
 
 .clearfix:after {

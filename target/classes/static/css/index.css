@@ -1,5 +1,5 @@
 html, body {height: 100%;}
-body {background: #eee;font-family: 'Josefin Sans', sans-serif;}
+body {background: #eee;font-family: 'Josefin Sans', sans-serif;overflow:hidden;}
 
 /*-------------------------
 GENERAL
