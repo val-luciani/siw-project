@@ -47,6 +47,10 @@ public class OperaService {
 	public void delete(long id){
 		this.operaRepository.delete(id);
 	}
+
+	public List<Opera> findByTecnica(String tecnica) {
+		return this.operaRepository.findByTecnica(tecnica);
+	}
 	
 	
 }

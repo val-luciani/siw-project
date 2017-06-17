@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -121,6 +123,20 @@ public class OperaController {
 		Opera opera = operaService.findById(id);
 		model.addAttribute("opera", opera);
 		return "editOpera";
+	}
+	
+	/* Mostra le opere con una determinata tecnica (cliccando sulla tecnica nella lista opere) */
+	@RequestMapping(value = "opereTecnica/{id}", method = RequestMethod.GET)
+	public String opereByTecnica(@PathVariable long id,
+						Model model) {
+		
+		Opera opera = operaService.findById(id);
+		String tecnica = opera.getTecnica();
+		List<Opera> opere = operaService.findByTecnica(tecnica);
+		
+		model.addAttribute("opera_tec", opera);
+		model.addAttribute("opereByTecnica", opere);
+		return "opereByTecnica";
 	}
 
 }
