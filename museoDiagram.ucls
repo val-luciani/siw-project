@@ -37,12 +37,12 @@
   </class>  
   <package id="7" language="java" name="it.uniroma3.siw" project="museo" file="/museo/src/main/java/it/uniroma3/siw" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="215" width="235" x="1031" y="416"/>    
+    <position height="217" width="406" x="1031" y="416"/>    
     <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <class id="8" language="java" name="it.uniroma3.siw.Application" project="museo" 
     file="/museo/src/main/java/it/uniroma3/siw/Application.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1138" y="523"/>    
+    <position height="-1" width="-1" x="1231" y="557"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -167,31 +167,31 @@
     </display>  
   </class>  
   <association id="22">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="23" name="operaRepository">        
-        <position height="0" width="0" x="0" y="-8"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="-8"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="26" name="autoreRepository">        
+      <attribute id="23" name="autoreRepository">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
+      <multiplicity id="24" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="28">    
+  <association id="25">    
     <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="26" name="operaService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="19" navigable="false">      
       <attribute id="29" name="autoreService">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
@@ -204,86 +204,86 @@
   </association>  
   <association id="31">    
     <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="32" name="operaService">        
+      <attribute id="32" name="autoreService">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="33" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="34">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="35" name="autoreService">        
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="35" name="operaService">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="36" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="37">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="38" name="autore">        
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="38" name="operaService">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="39" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="40">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="41" name="opere">        
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="41" name="autoreService">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="42" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="43">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="44" name="autoreService">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="45" minimum="0" maximum="1">        
+      <multiplicity id="42" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="46">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="47" name="operaService">        
+  <association id="43">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="44" name="autore">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="48" minimum="0" maximum="1">        
+      <multiplicity id="45" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="47" name="opere">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="49">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="50" name="operaService">        
-        <position height="0" width="0" x="0" y="0"/>      
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="50" name="operaRepository">        
+        <position height="0" width="0" x="0" y="-8"/>      
       </attribute>      
       <multiplicity id="51" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="0" y="-8"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
