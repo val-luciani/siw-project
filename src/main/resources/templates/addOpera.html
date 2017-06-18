@@ -12,7 +12,7 @@
     <body>
     
     	<header class="header clearfix">
-	      <a href="index.html" class="header__logo">Artist/</a>
+	      <a href="./index.html" class="header__logo">Artist/</a>
 	      <a href="" class="header__icon-bar">
 	        <span></span>
 	        <span></span>
@@ -20,7 +20,7 @@
 	      </a>
 	    </header>
     
-        <form action="#" th:action="@{/opera}" th:object="${opera}" method="post">
+        <form action="#" th:action="@{./opera}" th:object="${opera}" method="post">
             <div>
                 <div>
                     <span th:text="#{label.title}">Titolo: </span>
@@ -49,7 +49,7 @@
 				          th:text="${autore}">Autore</option>
 				</select>
 				<span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
-				<span><a href="/autore"> Aggiungi Autore</a></span>
+				<span><a href="./autore"> Aggiungi Autore</a></span>
                 <div>
                     <span><button type="submit">Submit</button></span>
                 </div>
@@ -59,7 +59,7 @@
         <br/>
 	    <div>
 	    	<div>
-			    <a href="/admin.html" class="button">ADMIN page</a>
+			    <a href="./admin.html" class="button">ADMIN page</a>
 			</div>
 	    </div>
 	    

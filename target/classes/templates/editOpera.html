@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/index_style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
     
 </head>
     <body>
@@ -20,7 +20,7 @@
 	      </a>
 	    </header>
     
-        <form action="#" th:action="@{/updateOpera}" th:object="${opera}" method="post">
+        <form action="#" th:action="@{./updateOpera}" th:object="${opera}" method="post">
             <div>
             	<div>
             		<input type="hidden" id="opera_id" name="opera_id" th:value="${opera.id}"/>
@@ -60,7 +60,7 @@
         <br/>
 	    <div>
 	    	<div>
-			    <a href="/admin.html" class="button">ADMIN page</a>
+			    <a href="./admin.html" class="button">ADMIN page</a>
 			</div>
 	    </div>
 	    

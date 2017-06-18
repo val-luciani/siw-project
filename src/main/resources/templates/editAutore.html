@@ -20,7 +20,7 @@
 	      </a>
 	    </header>
     
-        <form action="#" th:action="@{/updateAutore}" th:object="${autore}" method="post">
+        <form action="#" th:action="@{./updateAutore}" th:object="${autore}" method="post">
             <div>
             	<div>
             		<input type="hidden" id="autore_id" name="autore_id" th:value="${autore.id}"/>
@@ -59,7 +59,7 @@
         <br/>
 	    <div>
 	    	<div>
-			    <a href="/admin.html" class="button">ADMIN page</a>
+			    <a href="./admin.html" class="button">ADMIN page</a>
 			</div>
 	    </div>
 	    
