@@ -10,11 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// controller to access the login page
+
 @Controller
 public class LogoutController {
 
-  // Login form
+  	//Esegue il logout
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		

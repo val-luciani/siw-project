@@ -46,13 +46,13 @@ public class AutoreController {
 		return this.autoreService.findAll();
 	}
 	
-	//mapping index alla form per aggiungere un autore
+	//Mapping alla form per aggiungere un autore
 	@GetMapping("/autore")
 	public String showForm(Autore autore) {
 		return "addAutore";
 	}
 	
-	//controlla i valori della form e se è tutto ok restituisce "showAutore"
+	//Controlla i valori della form e se è tutto ok restituisce "showAutore"
 	@PostMapping("/autore")
     public String checkAutoreInfo(@Valid @ModelAttribute Autore autore, 
     									BindingResult bindingResult,
@@ -83,14 +83,14 @@ public class AutoreController {
         return "showAutore";
     }
 	
-	//reindirizza a pagina eliminazione autore
+	//Reindirizza a pagina eliminazione autore
 	@RequestMapping(value = "deleteAutore/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable long id) {
 		autoreService.delete(id);
 		return new ModelAndView("redirect:/autori");
 	}
 	
-	//reindirizza a pagina modifica autore
+	//Reindirizza a pagina modifica autore
 	@RequestMapping(value = "updateAutore/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable long id,
 						Model model) {
@@ -99,7 +99,7 @@ public class AutoreController {
 		return "editAutore";
 	}
 	
-	//modifica autore
+	//Modifica autore
 	@RequestMapping(value = "/updateAutore", method = RequestMethod.POST)
 	public ModelAndView updateAutore(@RequestParam("autore_id") long id, 
 									@RequestParam("autore_nome") String nome,
@@ -131,7 +131,7 @@ public class AutoreController {
 		return new ModelAndView("redirect:/autori");
 	}
 	
-	//opere by autore
+	//Reindirizza alla pagina che mostra le opere di un determinato autore
 	@RequestMapping(value = "opereAutore/{id}", method = RequestMethod.GET)
 	public String opereByAutore(@PathVariable long id,
 						Model model) {
@@ -143,7 +143,7 @@ public class AutoreController {
 		return "opereByAutore";
 	}
 	
-	//dettagli autore
+	//Reindirizza alla pagina che mostra i dettagli di un autore
 	@RequestMapping(value = "showAutore/{id}", method = RequestMethod.GET)
 	public String showAutore(@PathVariable long id,
 						Model model) {
@@ -155,7 +155,7 @@ public class AutoreController {
 	}
 	
 	
-	/*Gestione eccezione: Archivio Opere Vuoto*/
+	//Gestione eccezione: Archivio Opere Vuoto
 	@ExceptionHandler(SQLGrammarException.class)
 	public String handleSQLGrammarException(SQLGrammarException ex, HttpServletRequest request) {
 		logger.info("\n\n\n"
@@ -163,10 +163,10 @@ public class AutoreController {
 				+ "\n\nECCEZIONE: La tabella richiesta non è ancoa stata creata\nErrorMsg: "+ ex.getMessage() +"\n\n"
 				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 				+"\n\n\n");
-		return "redirect:/admin?codErr=1";
+		return "redirect:./admin?codErr=1";
 	}
 	
-	/*Gestisce eccezione record duplicati*/
+	//Gestisce eccezione record duplicati
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public String handleConstrainViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
 		logger.info("\n\n\n"
@@ -174,6 +174,6 @@ public class AutoreController {
 				+ "\n\nECCEZIONE: L'inserzione violerebbe i vincoli del modello\nErrorMsg:"+ ex.getMessage() +"\n\n"
 				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 				+"\n\n\n");
-		return "redirect:/autore?codErr=2";
+		return "redirect:./autore?codErr=2";
 	}
 }

@@ -38,11 +38,12 @@ public class Opera {
 	@JoinColumn(name = "autore_id")
 	private Autore autore;
 	
-	
+	// costruttore No-Arg
 	public Opera(){
 		
 	}
-
+	
+	//costruttore Arg
 	public Opera(String titolo, Integer anno, String tecnica, String dimensioni, Autore autore) {
 		super();
 		this.titolo = titolo;
@@ -52,7 +53,7 @@ public class Opera {
 		this.autore = autore;
 	}
 	
-	
+	/* Getters & Setters */
 
 	public Long getId() {
 		return id;
@@ -101,6 +102,8 @@ public class Opera {
 	public void setAutore(Autore autore) {
 		this.autore = autore;
 	}
+	
+	/* HashCode(), equals(), toString() */
 
 	@Override
 	public int hashCode() {

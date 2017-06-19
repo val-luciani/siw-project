@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(
-	    uniqueConstraints={@UniqueConstraint(columnNames={"nome", "cognome"})}
+	    uniqueConstraints={@UniqueConstraint(columnNames={"nome", "cognome"})}	//vincolo di unicità per la coppia (nome, cognome)
 	)
 public class Autore {
 	
@@ -40,12 +40,10 @@ public class Autore {
 	@Column
 	private String nazionalita;
 	
-	//@NotNull
 	@Column
 	@Temporal(value=TemporalType.DATE)
 	private Date dataDiNascita;
 	
-	//@NotNull
 	@Column
 	@Temporal(value=TemporalType.DATE)
 	private Date dataDiMorte;
@@ -53,10 +51,12 @@ public class Autore {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "autore")
 	private List<Opera> opere;
 	
+	//costruttore No-Arg
 	public Autore(){
 		
 	}
-
+	
+	//costruttore Arg
 	public Autore(String nome, String cognome, String nazionalita, Date dataDiNascita, Date dataDiMorte) {
 		super();
 		this.nome = nome;
@@ -66,6 +66,8 @@ public class Autore {
 		this.dataDiMorte = dataDiMorte;
 		this.opere = new ArrayList<Opera>();
 	}
+	
+	/* Getters & Setters */
 	
 	public Long getId() {
 		return id;
@@ -122,6 +124,8 @@ public class Autore {
 	public void setOpere(List<Opera> opere) {
 		this.opere = opere;
 	}
+	
+	/* HashCode(), equals(), toString() */
 
 	@Override
 	public int hashCode() {

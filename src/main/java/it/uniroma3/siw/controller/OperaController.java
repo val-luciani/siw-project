@@ -45,13 +45,13 @@ public class OperaController {
  		return this.autoreService.findAll();
  	}
 	
-	/*Inserisci nuova opera*/
+	//Risponde alla richiesta della pagina per inserire una nuova opera
 	@RequestMapping(value = "/opera", method = RequestMethod.GET)
 	public String showForm(Opera opera, HttpServletRequest request) {
 		return "addOpera";
 	}
 
-	//controlla i valori della form e se è tutto ok restituisce "showOpera"
+	//Controlla i valori della form e se è tutto ok restituisce "showOpera"
 	@RequestMapping( value = "/opera", method = RequestMethod.POST)
     public String checkOperaInfo(@Valid @ModelAttribute Opera opera, 
     									BindingResult bindingResult, Model model) {
@@ -66,7 +66,7 @@ public class OperaController {
         return "showOpera";
     }
 	
-	/*Gestisce eccezione record duplicati*/
+	//Gestisce eccezione record duplicati
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public String handleConstrainViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
 		logger.info("\n\n\n"
@@ -74,10 +74,10 @@ public class OperaController {
 				+ "\n\nECCEZIONE: L'inserzione violerebbe i vincoli del modello\nErrorMsg:"+ ex.getMessage() +"\n\n"
 				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 				+"\n\n\n");
-		return "redirect:/opera?codErr=2";
+		return "redirect:./opera?codErr=2";
 	}
 	
-	/*Gestione eccezione: Archivio Opere Vuoto*/
+	//Gestione eccezione: Archivio Opere Vuoto
 	@ExceptionHandler(SQLGrammarException.class)
 	public String handleSQLGrammarException(SQLGrammarException ex, HttpServletRequest request) {
 		logger.info("\n\n\n"
@@ -85,17 +85,17 @@ public class OperaController {
 				+ "\n\nECCEZIONE: La tabella richiesta non è ancoa stata creata\nErrorMsg: "+ ex.getMessage() +"\n\n"
 				+ "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 				+"\n\n\n");
-		return "redirect:/admin?codErr=1";
+		return "redirect:./admin?codErr=1";
 	}
 	
-	/*Rimuovi opera con un certo ID*/
+	//Risponde alla richiesta della pagina per rimuovere opera con un certo ID
 	@RequestMapping(value = "deleteOpera/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable long id) {
 		operaService.delete(id);
 		return new ModelAndView("redirect:/galleria");
 	}
 	
-	/*Aggiorna dati opera*/
+	//Aggiorna dati opera
 	@RequestMapping(value = "/updateOpera", method = RequestMethod.POST)
 	public ModelAndView updateOpera(@RequestParam("opera_id") long id, 
 									@RequestParam("opera_titolo") String titolo,
@@ -116,7 +116,7 @@ public class OperaController {
 		return new ModelAndView("redirect:/galleria");
 	}
 
-	/*Aggiorna dati opera avente ID*/
+	//Risponde alla richiesta della pagina per aggiornare i dati di un'opera avente determinato ID
 	@RequestMapping(value = "updateOpera/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable long id,
 						Model model) {
@@ -125,7 +125,7 @@ public class OperaController {
 		return "editOpera";
 	}
 	
-	/* Mostra le opere con una determinata tecnica (cliccando sulla tecnica nella lista opere) */
+	//Mostra le opere con una determinata tecnica (cliccando sulla tecnica nella lista opere)
 	@RequestMapping(value = "opereTecnica/{id}", method = RequestMethod.GET)
 	public String opereByTecnica(@PathVariable long id,
 						Model model) {
