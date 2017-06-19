@@ -20,7 +20,7 @@
 	      </a>
 	    </header>
     
-        <form action="#" th:action="@{./updateOpera}" th:object="${opera}" method="post">
+        <form action="#" th:action="@{/updateOpera}" th:object="${opera}" method="post">
             <div>
             	<div>
             		<input type="hidden" id="opera_id" name="opera_id" th:value="${opera.id}"/>
