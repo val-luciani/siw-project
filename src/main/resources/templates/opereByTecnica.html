@@ -60,14 +60,14 @@
                         <td>
                         	<div sec:authorize="hasRole('ADMIN')">
 
-                        		<button class="btn btn-primary btn-lg"><a th:href="@{'/deleteOpera/{id}'(id=${opera.id})}">Elimina</a></button>
+                        		<a th:href="@{'/deleteOpera/{id}'(id=${opera.id})}" class="button">Elimina</a>
 
                         	</div>
                         </td>
                         <td>
                         	<div sec:authorize="hasRole('ADMIN')">
 
-                        		<button class="btn btn-primary btn-lg"><a th:href="@{'/updateOpera/{id}'(id=${opera.id})}">Modifica</a></button>
+                        		<a th:href="@{'/updateOpera/{id}'(id=${opera.id})}" class="button">Modifica</a>
 
                         	</div>
                         </td>
