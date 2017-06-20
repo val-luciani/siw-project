@@ -43,17 +43,17 @@
             		<input type="hidden" id="autore_id" name="autore_id" th:value="${autore.id}"/>
             	</div>
                 <div class="container_form_field">
-                    <span th:text="#{label.title}">Nome: </span><br/>
+                    <span th:text="#{label.name}">Nome: </span><br/>
                     <span><input type="text" id="autore_nome" name="autore_nome" th:value="${autore.nome}"/></span><br/>
                     <span th:if="${#fields.hasErrors('nome')}" th:text="#{label.mandatory}">Error</span>
                 </div>
                 <div class="container_form_field">
-                    <span th:text="#{label.year}">Cognome: </span><br/>
+                    <span th:text="#{label.surname}">Cognome: </span><br/>
                     <span><input type="text" th:value="${autore.cognome}" id="autore_cognome" name="autore_cognome"/></span><br/>
                     <span th:if="${#fields.hasErrors('cognome')}" th:text="#{label.mandatory}">Error</span>
                 </div>
                 <div class="container_form_field">
-                    <span th:text="#{label.technique}">Nazionalità: </span><br/>
+                    <span th:text="#{label.nationality}">Nazionalità: </span><br/>
                     <span><input type="text" th:value="${autore.nazionalita}" id="autore_nazionalita" name="autore_nazionalita"/></span>
                     <span th:if="${#fields.hasErrors('nazionalita')}" th:text="#{label.mandatory}">Error</span>
                 </div>

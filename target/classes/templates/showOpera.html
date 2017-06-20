@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Opera Inserita</title>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
@@ -12,48 +12,51 @@
 <body>
 
 	<header class="header clearfix">
-	      <a class="header__logo">Opera</a>
-	      <a href="" class="header__icon-bar">
-	        <span></span>
-	        <span></span>
-	        <span></span>
-	      </a>
-	</header>
+      <a href="/index.html" class="header__logo">Artist/</a>
+      <a href="" class="header__icon-bar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+      <ul class="header__menu animate">
+        <li class="header__menu__item"><a href="">About Us</a></li>
+        <li class="header__menu__item"><a href="">Contact</a></li>
+        <li class="header__menu__item"><a href="">Event</a></li>
+        <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+        <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+      </ul>
+    </header>
+	<div id="contenitore">	
+		<div>
+	    	<p th:text="'Titolo: ' + ${opera.titolo}" />
+	    </div>
+		<div>
+	    	<p th:text="'Anno: ' + ${opera.anno}" />
+	    </div>
+	    <div>
+	    	<p th:text="'Tecnica: ' + ${opera.tecnica}" />
+	    </div>
+	    <div>
+	    	<p th:text="'Dimensioni: ' + ${opera.dimensioni}" />
+	    </div>
+	    <div>
+	    	<p th:text="'Autore: ' + ${opera.autore}" />
+	    </div>
+	
+	    <br />
+	    <div>
+	    	<div>
+	        	<a href="/opera" class="button">Click here to add another Opera</a>
+	    	</div>
+	    </div>
+	    <div>
+	    	<div>
+	        	<a href="/galleria" class="button">Click here to see the gallery</a>
+	        </div>
+	    </div>
+	</div>
 
-	<div>
-    	<p th:text="'Titolo: ' + ${opera.titolo}" />
-    </div>
-	<div>
-    	<p th:text="'Anno: ' + ${opera.anno}" />
-    </div>
-    <div>
-    	<p th:text="'Tecnica: ' + ${opera.tecnica}" />
-    </div>
-    <div>
-    	<p th:text="'Dimensioni: ' + ${opera.dimensioni}" />
-    </div>
-    <div>
-    	<p th:text="'Autore: ' + ${opera.autore}" />
-    </div>
 
-    <br />
-    <div>
-    	<div>
-        	<a href="/opera" class="button">Click here to add another Opera</a>
-    	</div>
-    </div>
-    <div>
-    	<div>
-        	<a href="/galleria" class="button">Click here to see the gallery</a>
-        </div>
-    </div>
-
-    <br/>
-    <div>
-    	<div>
-		    <a href="/dash.html" class="button">Dashboard</a>
-		</div>
-    </div>
 
     <script>
       $(document).ready(function(){
