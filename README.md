@@ -14,5 +14,5 @@ Tecnologie utilizzate:
 		<li>CSS: <b>Bootstrap</b></li>
 		<li>HTML: <b>Thymeleaf</b></li>
 	</ul>
-- [URL server (Amazon Web Service)](http://35.176.115.183/): http://35.176.115.183/
+- [URL server (Amazon Web Service)](52.14.177.148): http://sample-env-1.bvgdja33yg.us-east-2.elasticbeanstalk.com
 - URL Database:	jdbc:postgresql://dbsiwproject.ckqdpqtsiqj7.eu-west-2.rds.amazonaws.com/progetto
