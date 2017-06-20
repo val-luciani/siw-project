@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Opera Inserita</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+	<header class="header clearfix">
+	      <a class="header__logo">Opera</a>
+	      <a href="" class="header__icon-bar">
+	        <span></span>
+	        <span></span>
+	        <span></span>
+	      </a>
+	</header>
+
+	<div>
+    	<p th:text="'Titolo: ' + ${opera.titolo}" />
+    </div>
+	<div>
+    	<p th:text="'Anno: ' + ${opera.anno}" />
+    </div>
+    <div>
+    	<p th:text="'Tecnica: ' + ${opera.tecnica}" />
+    </div>
+    <div>
+    	<p th:text="'Dimensioni: ' + ${opera.dimensioni}" />
+    </div>
+    <div>
+    	<p th:text="'Autore: ' + ${opera.autore}" />
+    </div>
+
+    <br />
+    <div>
+    	<div>
+        	<a href="/opera" class="button">Click here to add another Opera</a>
+    	</div>
+    </div>
+    <div>
+    	<div>
+        	<a href="/galleria" class="button">Click here to see the gallery</a>
+        </div>
+    </div>
+
+    <br/>
+    <div>
+    	<div>
+		    <a href="/dash.html" class="button">Dashboard</a>
+		</div>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+
+</body>
+</html>

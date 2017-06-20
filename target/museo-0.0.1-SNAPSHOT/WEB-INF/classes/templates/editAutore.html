@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Edit Autore</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="../css/formStyle.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+	<style media="screen">
+	   body{
+	      background: url("https://www.tgtourism.tv/wp-content/uploads/2017/04/leonardo.jpg");
+	      background-position: center;
+	      background-size: cover;background-repeat: no-repeat;
+	    }
+	 </style>
+</head>
+    <body>
+
+      <header class="header clearfix">
+          <a href="/index.html" class="header__logo">Artist/</a>
+          <a href="" class="header__icon-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+          <ul class="header__menu animate">
+            <li class="header__menu__item"><a href="">About Us</a></li>
+            <li class="header__menu__item"><a href="">Contact</a></li>
+            <li class="header__menu__item"><a href="">Event</a></li>
+            <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+            <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+          </ul>
+        </header>
+        
+        <div id="container">
+          <div class="container_header">
+            <h1>Edit Autore</h1>
+          </div>
+        <form action="#" th:action="@{/updateAutore}" th:object="${autore}" class="container_form" method="post">
+            <div>
+            	<div class="container_form_field">
+            		<input type="hidden" id="autore_id" name="autore_id" th:value="${autore.id}"/>
+            	</div>
+                <div class="container_form_field">
+                    <span th:text="#{label.title}">Nome: </span><br/>
+                    <span><input type="text" id="autore_nome" name="autore_nome" th:value="${autore.nome}"/></span><br/>
+                    <span th:if="${#fields.hasErrors('nome')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div class="container_form_field">
+                    <span th:text="#{label.year}">Cognome: </span><br/>
+                    <span><input type="text" th:value="${autore.cognome}" id="autore_cognome" name="autore_cognome"/></span><br/>
+                    <span th:if="${#fields.hasErrors('cognome')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div class="container_form_field">
+                    <span th:text="#{label.technique}">Nazionalità: </span><br/>
+                    <span><input type="text" th:value="${autore.nazionalita}" id="autore_nazionalita" name="autore_nazionalita"/></span>
+                    <span th:if="${#fields.hasErrors('nazionalita')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div class="container_form_field">
+                    <span>Data di nascita: </span><br/>
+                    <span><input type="date" th:value="${autore.dataDiNascita}" id="data_nascita" name="data_nascita" required="required" /></span><br/>
+                    <span th:if="${#fields.hasErrors('dataDiNascita')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div class="container_form_field">
+                    <span>Data di morte: </span><br/>
+                    <span><input type="date" th:value="${autore.dataDiMorte}" id="data_morte" name="data_morte" required="required"/></span><br/>
+                    <span th:if="${#fields.hasErrors('dataDiMorte')}" th:text="#{label.mandatory}">Error</span>
+                </div>
+                <div class="form-actions container_btn">
+                    <span><button type="submit" class="btn btn-primary btn-md">Submit</button></span>
+                </div>
+            </div>
+        </form>
+	</div>
+
+
+	    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+
+    <script type="text/javascript" src="/js/constraintError.js"></script>
+    </body>
+</html>

@@ -1,69 +1,79 @@
 <!DOCTYPE HTML>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title>Artit/ - New Opera</title>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" href="css/index_style.css" />
+  <title>Artit/ - New Opera</title>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-    
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/formStyle.css" />
+
 </head>
     <body>
-    
-    	<header class="header clearfix">
-	      <a href="./index.html" class="header__logo">Artist/</a>
-	      <a href="" class="header__icon-bar">
-	        <span></span>
-	        <span></span>
-	        <span></span>
-	      </a>
-	    </header>
-    
-        <form action="#" th:action="@{/opera}" th:object="${opera}" method="post">
+
+      <header class="header clearfix">
+          <a href="/index.html" class="header__logo">Artist/</a>
+          <a href="" class="header__icon-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+          <ul class="header__menu animate">
+            <li class="header__menu__item"><a href="">About Us</a></li>
+            <li class="header__menu__item"><a href="">Contact</a></li>
+            <li class="header__menu__item"><a href="">Event</a></li>
+            <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+            <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+          </ul>
+        </header>
+      <div id="container">
+        <div class="container_header">
+          <h1>New Opera</h1>
+        </div>
+        <form action="#" th:action="@{/opera}" class="container_form" th:object="${opera}" method="post">
             <div>
-                <div>
-                    <span th:text="#{label.title}">Titolo: </span>
-                    <span><input type="text" th:field="*{titolo}" /></span>
+                <div class="container_form_field">
+                    <span th:text="#{label.title}">Titolo: </span><br/>
+                    <span><input type="text" th:field="*{titolo}" /></span><br/>
                     <span th:if="${#fields.hasErrors('titolo')}" th:text="#{label.mandatory}">Error</span>
                 </div>
-                <div>
-                    <span th:text="#{label.year}">Anno: </span>
-                    <span><input type="text" th:field="*{anno}" /></span>
+                <div class="container_form_field">
+                    <span th:text="#{label.year}">Anno: </span><br/>
+                    <span><input type="text" th:field="*{anno}" /></span><br/>
                     <span th:if="${#fields.hasErrors('anno')}" th:text="#{label.number}">Error</span>
                 </div>
-                <div>
-                    <span th:text="#{label.technique}">Tecnica: </span>
-                    <span><input type="text" th:field="*{tecnica}" /></span>
+                <div class="container_form_field">
+                    <span th:text="#{label.technique}">Tecnica: </span><br/>
+                    <span><input type="text" th:field="*{tecnica}" /></span><br/>
                     <span th:if="${#fields.hasErrors('tecnica')}" th:text="#{label.mandatory}">Error</span>
                 </div>
-                <div>
-                    <span th:text="#{label.size}">Dimensioni: </span>
-                    <span><input type="text" th:field="*{dimensioni}" /></span>
+                <div class="container_form_field">
+                    <span th:text="#{label.size}">Dimensioni: </span><br/>
+                    <span><input type="text" th:field="*{dimensioni}" /></span><br/>
                     <span th:if="${#fields.hasErrors('dimensioni')}" th:text="#{label.mandatory}">Error</span>
                 </div>
-                <span th:text="#{label.author}">Autore: </span>
-                <select th:field="*{autore}" required="required">
-				  <option th:each="autore : ${allAuthors}" 
-				          th:value="${autore.id}" 
-				          th:text="${autore}">Autore</option>
-				</select>
-				<span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
-				<span><a href="./autore"> Aggiungi Autore</a></span>
-                <div>
-                    <span><button type="submit">Submit</button></span>
+                <div class="container_form_field">
+                  <span th:text="#{label.author}">Autore: </span><br/>
+                  <select class="btn btn-primary btn-md" th:field="*{autore}" required="required">
+  				            <option th:each="autore : ${allAuthors}"
+  				                    th:value="${autore.id}"
+  				                    th:text="${autore}">Autore</option>
+                  </select>
+                  <span><a href="/autore" id="addNewAut"> Aggiungi Autore</a></span><br/>
+                  <span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
+
+                </div>
+
+                <div class="form-actions container_btn">
+                    <span><button type="submit" class="btn btn-primary btn-md">Submit</button></span>
                 </div>
             </div>
         </form>
-        
-        <br/>
-	    <div>
-	    	<div>
-			    <a href="./admin.html" class="button">ADMIN page</a>
-			</div>
-	    </div>
-	    
-	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+       </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 	    <script>
       $(document).ready(function(){
 
@@ -75,7 +85,7 @@
         });
       });
     </script>
-    
-   	<script type="text/javascript" src="js/constraintError.js"></script>
+
+   	<script type="text/javascript" src="/js/constraintError.js"></script>
     </body>
 </html>

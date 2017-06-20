@@ -14,7 +14,7 @@
   <!-- Contenuto della sidebar -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a sec:authorize="hasRole('ADMIN')" href="./admin">ADMIN page</a>
+    <a sec:authorize="hasRole('ADMIN')" href="/admin">ADMIN page</a>
     <a href="#" disabled="disabled">Preferiti</a>
     <a href="#" disabled="disabled">Recenti</a>
     <a href="#" disabled="disabled">Consigliati</a>
@@ -41,12 +41,12 @@
 
 
 
-    <a href="./index.html" class="header__logo">Artist/</a>
+    <a href="/index.html" class="header__logo">Artist/</a>
       <ul class="header__menu animate">
         <li class="header__menu__item"><a href="">About Us</a></li>
         <li class="header__menu__item"><a href="">Contact</a></li>
         <li class="header__menu__item"><a href="">Event</a></li>
-        <li class="header__menu__item"><a href="./login">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+        <li class="header__menu__item"><a href="/login">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
       </ul>
     </header>
 
@@ -57,8 +57,8 @@
   		 <div class="cover__caption">
   		 <div class="cover__caption__copy">
 
-  				<p><a href="./galleria" class="button">See the GALLERY</a></p>
-  				<p><a href="./autori" class="button">See the AUTHORS</a></p>
+  				<p><a href="/galleria" class="button">See the GALLERY</a></p>
+  				<p><a href="/autori" class="button">See the AUTHORS</a></p>
 
   		</div>
   		</div>

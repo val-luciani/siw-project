@@ -1,0 +1,83 @@
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Artist/ - Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="css/dash_style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+  <!-- Contenuto della sidebar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a sec:authorize="hasRole('ADMIN')" href="/admin">ADMIN page</a>
+    <a href="#" disabled="disabled">Preferiti</a>
+    <a href="#" disabled="disabled">Recenti</a>
+    <a href="#" disabled="disabled">Consigliati</a>
+    <div id="logContent">
+      <a disabled="disabled" sec:authorize="isAuthenticated()">
+        | Logged user: <span sec:authentication="name"></span> |
+        | Roles: <span sec:authentication="principal.authorities"></span> |
+      </a>
+      <a href="/logout">LOGOUT</a>
+    </div>
+  </div>
+
+
+
+  <!-- Header Bar -->
+	<header class="header clearfix">
+
+    <!-- Elemento che apre la navbar -->
+    <div onclick="openNav()" class="header__icon-bar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+
+
+    <a href="/index.html" class="header__logo">Artist/</a>
+      <ul class="header__menu animate">
+        <li class="header__menu__item"><a href="">About Us</a></li>
+        <li class="header__menu__item"><a href="">Contact</a></li>
+        <li class="header__menu__item"><a href="">Event</a></li>
+        <li class="header__menu__item"><a href="/login">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+      </ul>
+    </header>
+
+    <!-- Sezione centrale -->
+    <div id="main">
+      <section class="cover clearfix">
+  		 <div class="cover__filter"></div>
+  		 <div class="cover__caption">
+  		 <div class="cover__caption__copy">
+
+  				<p><a href="/galleria" class="button">See the GALLERY</a></p>
+  				<p><a href="/autori" class="button">See the AUTHORS</a></p>
+
+  		</div>
+  		</div>
+  	</section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+    <script type="text/javascript" src="js/sidebar.js"></script>
+</body>
+</html>

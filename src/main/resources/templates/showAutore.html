@@ -3,11 +3,11 @@
 <head>
     <title>Autore Inserito</title>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" href="../css/index_style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
 	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-    
+
 </head>
 <body>
 
@@ -19,8 +19,8 @@
 	        <span></span>
 	      </a>
 	</header>
-	
-	
+
+
 	<div>
     	<p th:text="'Nome: ' + ${autore.nome}" />
     </div>
@@ -36,7 +36,7 @@
     <div>
     	<p th:text="'Data di morte: ' + ${#dates.format(autore.dataDiMorte, 'dd-MM-yyyy')}" />
     </div>
-    
+
     <br />
     <div>
     	<div sec:authorize="hasRole('ADMIN')">
@@ -48,14 +48,14 @@
         	<a href="/opera" class="button">Add an Opera for this Author</a>
         </div>
     </div>
-    
+
     <br/>
     <div>
     	<div>
 		    <a href="/dash.html" class="button">Dashboard</a>
 		</div>
     </div>
-    
+
     <script>
       $(document).ready(function(){
 

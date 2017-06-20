@@ -1,65 +1,80 @@
 <!DOCTYPE HTML>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title>Artist/ - New Autore</title>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" href="css/index_style.css" />
+  <title>Artist/ - New Autore</title>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <link rel="stylesheet" href="css/formStyle.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-    
+  <style media="screen">
+    body{
+      background: url("https://www.tgtourism.tv/wp-content/uploads/2017/04/leonardo.jpg");
+      background-position: center;
+      background-size: cover;background-repeat: no-repeat;
+    }
+  </style>
+
 </head>
 <body>
 
-		<header class="header clearfix">
-	      <a href="./index.html" class="header__logo">Artist/</a>
-	      <a href="" class="header__icon-bar">
-	        <span></span>
-	        <span></span>
-	        <span></span>
-	      </a>
-	    </header>
-    
-        <form action="#" th:action="@{/autore}" th:object="${autore}" method="post">
-            <div>
-                <div>
-                    <span th:text="#{label.name}">Nome: </span>
-                    <span><input type="text" th:field="*{nome}" /></span>
-                    <span th:if="${#fields.hasErrors('nome')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span th:text="#{label.surname}">Cognome: </span>
-                    <span><input type="text" th:field="*{cognome}" /></span>
-                    <span th:if="${#fields.hasErrors('cognome')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span th:text="#{label.nationality}">Nazionalita': </span>
-                    <span><input type="text" th:field="*{nazionalita}" /></span>
-                    <span th:if="${#fields.hasErrors('nazionalita')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span>Data di nascita: </span>
-                    <span><input type="date" id="data_nascita" name="data_nascita" /></span>
-                    <span th:if="${#fields.hasErrors('dataDiNascita')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span>Data di morte: </span>
-                    <span><input type="date" id="data_morte" name="data_morte" /></span>
-                    <span th:if="${#fields.hasErrors('dataDiMorte')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span><button type="submit">Submit</button></span>
-                </div>
-            </div>
-        </form>
-        
-        <br/>
-	    <div>
-	    	<div>
-			    <a href="./admin.html" class="button">ADMIN page</a>
-			</div>
-	    </div>
-	   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+	<header class="header clearfix">
+      <a href="/index.html" class="header__logo">Artist/</a>
+      <a href="" class="header__icon-bar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+      <ul class="header__menu animate">
+        <li class="header__menu__item"><a href="">About Us</a></li>
+        <li class="header__menu__item"><a href="">Contact</a></li>
+        <li class="header__menu__item"><a href="">Event</a></li>
+        <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+        <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+      </ul>
+    </header>
+    <div id="container">
+      <div class="container_header">
+        <h1>New Autore</h1>
+      </div>
+      <form action="#" th:action="@{/autore}" th:object="${autore}"  class="container_form" method="post">
+          <div>
+              <div class="container_form_field">
+                  <span th:text="#{label.name}">Nome: </span><br/>
+                  <span><input type="text" th:field="*{nome}" /></span><br/>
+                  <span th:if="${#fields.hasErrors('nome')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span th:text="#{label.surname}">Cognome: </span><br/>
+                  <span><input type="text" th:field="*{cognome}" /></span><br/>
+                  <span th:if="${#fields.hasErrors('cognome')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span th:text="#{label.nationality}">Nazionalita': </span>
+                  <span><input type="text" th:field="*{nazionalita}" /></span>
+                  <span th:if="${#fields.hasErrors('nazionalita')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span>Data di nascita: </span><br/>
+                  <span><input type="date" id="data_nascita" name="data_nascita" required="required"/></span><br/>
+                  <span th:if="${#fields.hasErrors('dataDiNascita')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span>Data di morte: </span><br/>
+                  <span><input type="date" id="data_morte" name="data_morte" required="required" /></span><br/>
+                  <span th:if="${#fields.hasErrors('dataDiMorte')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="form-actions container_btn">
+                  <span><button type="submit" class="btn btn-primary btn-md">Submit</button></span>
+              </div>
+          </div>
+      </form>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
 	    <script>
       $(document).ready(function(){
 
@@ -71,7 +86,7 @@
         });
       });
     </script>
-    
-	<script type="text/javascript" src="js/constraintError.js"></script>   
+
+	<script type="text/javascript" src="/js/constraintError.js"></script>
 </body>
 </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Edit Opera</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="../css/formStyle.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+</head>
+    <body>
+      <header class="header clearfix">
+          <a href="/index.html" class="header__logo">Artist/</a>
+          <a href="" class="header__icon-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+          <ul class="header__menu animate">
+            <li class="header__menu__item"><a href="">About Us</a></li>
+            <li class="header__menu__item"><a href="">Contact</a></li>
+            <li class="header__menu__item"><a href="">Event</a></li>
+            <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+            <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+          </ul>
+        </header>
+
+
+        <div id="container">
+          <div class="container_header">
+            <h1>New Opera</h1>
+          </div>
+        <form action="#" class="container_form" th:action="@{/updateOpera}" th:object="${opera}" method="post">
+          
+              <div>
+            	  <input type="hidden" id="opera_id" name="opera_id" th:value="${opera.id}"/>
+              </div>
+              <div class="container_form_field">
+                  <span th:text="#{label.title}">Titolo: </span><br/>
+                  <span><input type="text" th:field="*{titolo}" /></span>
+                  <span th:if="${#fields.hasErrors('titolo')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span th:text="#{label.year}">Anno: </span><br/>
+                  <span><input type="text" th:field="*{anno}" /></span>
+                  <span th:if="${#fields.hasErrors('anno')}" th:text="#{label.number}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span th:text="#{label.technique}">Tecnica: </span><br/>
+                  <span><input type="text" th:field="*{tecnica}" /></span>
+                  <span th:if="${#fields.hasErrors('tecnica')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                  <span th:text="#{label.size}">Dimensioni: </span><br/>
+                  <span><input type="text" th:field="*{dimensioni}" /></span>
+                  <span th:if="${#fields.hasErrors('dimensioni')}" th:text="#{label.mandatory}">Error</span>
+              </div>
+              <div class="container_form_field">
+                <span th:text="#{label.author}">Autore: </span><br/>
+                <select class="btn btn-primary btn-md" th:field="*{autore}" required="required">
+                    <option th:each="autore : ${allAuthors}"
+                            th:value="${autore.id}"
+                            th:text="${autore}">Autore</option>
+                </select>
+                <span th:if="${#fields.hasErrors('autore')}" th:text="#{label.mandatory}">Error</span>
+                <div class="form-actions container_btn">
+                    <span><button type="submit"  class="btn btn-primary btn-md">Submit</button></span>
+                </div>
+                
+            </div>
+        </form>
+      </div>
+
+
+	    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+
+    <script type="text/javascript" src="/js/constraintError.js"></script>
+    </body>
+</html>

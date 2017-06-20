@@ -1,0 +1,43 @@
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Lora"/>
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/login_style.css" />
+    <title>Login Owner</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="container_header">
+        <h1>Login</h1>
+      </div>
+	      <form name="f" th:action="@{/login}" class="container_form" method="post">
+	      	<fieldset>
+		        <div th:if="${param.error}" class="alert alert-error">
+	            	Invalid username and password.
+	            </div>
+	            <div th:if="${param.logout}" class="alert alert-success">
+	            	You have been logged out.
+	            </div>
+		        <div class="container_form_field">
+		          <label for="username">Username:</label>
+		          <input type="text" name="username" id="username" placeholder="pincopallino"/>
+		        </div>
+		        <div class="container_form_field">
+		          <label for="password">Password:</label>
+		          <input type="password" name="password" id="password" placeholder="12345segretissima"/>
+		        </div>
+		        <div class="form-actions container_btn">
+		            <input type="submit" id="submitBtn" class="btn btn-primary btn-md" value="Entra!"/>
+		        </div>
+	        </fieldset>
+	      </form>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>

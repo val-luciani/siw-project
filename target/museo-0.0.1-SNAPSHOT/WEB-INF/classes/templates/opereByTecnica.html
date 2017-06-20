@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title>Opere</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+
+	<header class="header clearfix">
+      <a href="/index.html" class="header__logo">Artist/</a>
+      <a href="" class="header__icon-bar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+      <ul class="header__menu animate">
+        <li class="header__menu__item"><a href="">About Us</a></li>
+        <li class="header__menu__item"><a href="">Contact</a></li>
+        <li class="header__menu__item"><a href="">Event</a></li>
+        <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+        <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+
+      </ul>
+    </header>
+
+	<section class="cover clearfix">
+		 <div class="cover__filter"></div>
+		 <div class="cover__caption">
+		 <div class="cover__caption__copy">
+
+                <h1 align="center">Opere con la tecnica " <span th:text="${opera_tec.tecnica}"></span> "</h1>
+
+                <table cellspacing="25">
+                    <thead>
+                    <tr>
+                        <th>Titolo</th>
+                        <th>Anno</th>
+                        <th>Autore</th>
+                        <th>Dimensioni</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="opera : ${opereByTecnica}">
+                        <td th:text="${opera.titolo}"></td>
+                        <td th:text="${opera.anno}"></td>
+                        <td><a th:href="@{'/showAutore/{id}'(id=${opera.autore.id})}" class="button" th:text="${opera.autore}"></a></td>
+                        <td th:text="${opera.dimensioni}"></td>
+
+                        <td style="background-color:#bbb"></td>	<!-- Separatore -->
+
+                        <td>
+                        	<div sec:authorize="hasRole('ADMIN')">
+
+                        		<button class="btn btn-primary btn-lg"><a th:href="@{'/deleteOpera/{id}'(id=${opera.id})}">Elimina</a></button>
+
+                        	</div>
+                        </td>
+                        <td>
+                        	<div sec:authorize="hasRole('ADMIN')">
+
+                        		<button class="btn btn-primary btn-lg"><a th:href="@{'/updateOpera/{id}'(id=${opera.id})}">Modifica</a></button>
+
+                        	</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+         </div>
+		 </div>
+	</section>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+
+        $(".header_icon-bar").click(function(e){
+
+          $(".header_menu").toggleClass("is-open");
+          e.preventDefault();
+
+        });
+      });
+    </script>
+
+</body>
+</html>

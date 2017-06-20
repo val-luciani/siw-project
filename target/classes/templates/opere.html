@@ -4,17 +4,17 @@
 <head>
     <title>Artist/ - Galleria</title>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" href="css/index_style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"/>
 	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-    
-    
+
+
 </head>
 <body>
 
 	<header class="header clearfix">
-      <a href="./index.html" class="header__logo">Artist/</a>
+      <a href="/index.html" class="header__logo">Artist/</a>
       <a href="" class="header__icon-bar">
         <span></span>
         <span></span>
@@ -24,6 +24,9 @@
         <li class="header__menu__item"><a href="">About Us</a></li>
         <li class="header__menu__item"><a href="">Contact</a></li>
         <li class="header__menu__item"><a href="">Event</a></li>
+        <li class="header__menu__item"><a href="/dash.html">Dashboard</a></li>
+        <li class="header__menu__item"><a href="/logout" sec:authentication="name"></a></li>
+
       </ul>
     </header>
 
@@ -31,7 +34,7 @@
 		 <div class="cover__filter"></div>
 		 <div class="cover__caption">
 		 <div class="cover__caption__copy">
-		 
+
                 <h1 align="center">Opere</h1>
 
                 <table cellspacing="25">
@@ -42,7 +45,7 @@
                         <th>Tecnica</th>
                         <th>Dimensioni</th>
                         <th>Autore</th>
-                        
+
                     </tr>
                     </thead>
                     <tbody>
@@ -50,48 +53,34 @@
                     <tr th:each="opera : ${allOpere}">
                         <td th:text="${opera.titolo}"></td>
                         <td th:text="${opera.anno}"></td>
-                        <td><a th:href="@{'./opereTecnica/{id}'(id=${opera.id})}" th:text="${opera.tecnica}" class="button"></a></td>
+                        <td><a th:href="@{'/opereTecnica/{id}'(id=${opera.id})}" th:text="${opera.tecnica}" class="button"></a></td>
                         <td th:text="${opera.dimensioni}"></td>
-                        <td><a th:href="@{'./showAutore/{id}'(id=${opera.autore.id})}" class="button" th:text="${opera.autore}"></a></td>
-                        
+                        <td><a th:href="@{'/showAutore/{id}'(id=${opera.autore.id})}" class="button" th:text="${opera.autore}"></a></td>
+
                         <td style="background-color:#bbb"></td>	<!-- Separatore -->
-                        
+
                         <td>
                         	<div sec:authorize="hasRole('ADMIN')">
-                        		
-                        		<button class="btn btn-primary btn-lg"><a th:href="@{'./deleteOpera/{id}'(id=${opera.id})}">Elimina</a></button>
+
+                        		<a th:href="@{'/deleteOpera/{id}'(id=${opera.id})}" class="button">Elimina</a>
 
                         	</div>
                         </td>
                         <td>
                         	<div sec:authorize="hasRole('ADMIN')">
-                        		
-                        		<button class="btn btn-primary btn-lg"><a th:href="@{'./updateOpera/{id}'(id=${opera.id})}" class="btn">Modifica</a></button>
+
+                        		<a th:href="@{'/updateOpera/{id}'(id=${opera.id})}" class="button">Modifica</a>
 
                         	</div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                
+
          </div>
-		 </div>	    
+		 </div>
 	</section>
-                
-    <br />
-    <div>
-        <div align="center">
-            <a href="./dash.html" class="button"><h1>Dashboard</h1></a>
-        </div>
-    </div>
-    
-    <span sec:authorize="isAuthenticated()">
-           
-           | Logged user: <span sec:authentication="name"></span> |
-           | Roles: <span sec:authentication="principal.authorities"></span> |
-           
-    </span>
-            
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <script>
@@ -105,6 +94,6 @@
         });
       });
     </script>
-    
+
 </body>
 </html>
